@@ -1,0 +1,51 @@
+services:
+
+  postgres:
+    image: postgres:16
+    container_name: snapqr_postgres
+    environment:
+      POSTGRES_USER: jay
+      POSTGRES_PASSWORD: J@ykant5677
+      POSTGRES_DB: qrcodedb
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - snapqr_net
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U jay -d qrcodedb"]
+      interval: 5s
+      retries: 10
+
+  backend:
+    build:
+      context: ./SnapQR-Backend
+    container_name: snapqr_backend
+    env_file:
+      - ./SnapQR-Backend/.env
+    ports:
+      - "8080:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - snapqr_net
+
+  frontend:
+    build:
+      context: ./SnapQR-Frontend
+    container_name: snapqr_frontend
+    ports:
+      - "4200:80"
+    depends_on:
+      - backend
+    networks:
+      - snapqr_net
+
+networks:
+  snapqr_net:
+    driver: bridge
+
+volumes:
+  pgdata:

@@ -1,0 +1,99 @@
+<div class="min-h-screen bg-gradient-to-br from-[#eef8ff] to-[#e9f0ff] px-6 py-10">
+  <div class="max-w-4xl mx-auto bg-white shadow-lg rounded-2xl p-8">
+
+    <h1 class="text-3xl font-bold text-[#0b2b49] mb-6">Generate QR Code</h1>
+
+    <!-- Form -->
+    <form [formGroup]="form" (ngSubmit)="generate()" class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+      <!-- Left Side (Inputs) -->
+      <div>
+        <!-- Content type -->
+        <label class="block text-gray-700 font-medium mb-1">Content Type</label>
+        <select formControlName="contentType"
+                class="w-full p-3 border rounded-lg mb-4">
+          <option *ngFor="let t of contentTypes" [value]="t.value">{{ t.label }}</option>
+        </select>
+
+        <!-- Image type -->
+        <label class="block text-gray-700 font-medium mb-1">Image Format</label>
+        <select formControlName="imageType"
+                class="w-full p-3 border rounded-lg mb-4">
+          <option *ngFor="let t of imageTypes" [value]="t.value">{{ t.label }}</option>
+        </select>
+
+        <!-- URL + TEXT -->
+        <div *ngIf="form.get('contentType')?.value === 'URL'
+                 || form.get('contentType')?.value === 'TEXT'">
+          <label class="block text-gray-700 font-medium mb-1">Content</label>
+          <input formControlName="content"
+                 class="w-full p-3 border rounded-lg mb-4"
+                 placeholder="Enter text or URL">
+        </div>
+
+        <!-- WIFI -->
+        <div *ngIf="form.get('contentType')?.value === 'WIFI'">
+          <label class="block text-gray-700 font-medium">Wi-Fi SSID</label>
+          <input formControlName="wifi_ssid" class="w-full p-3 border rounded-lg mb-3">
+
+          <label class="block text-gray-700 font-medium">Password</label>
+          <input formControlName="wifi_password" class="w-full p-3 border rounded-lg mb-3">
+
+          <label class="block text-gray-700 font-medium">Encryption</label>
+          <select formControlName="wifi_encryption"
+                  class="w-full p-3 border rounded-lg mb-4">
+            <option value="WPA">WPA/WPA2</option>
+            <option value="WEP">WEP</option>
+            <option value="nopass">No Password</option>
+          </select>
+        </div>
+
+        <!-- CONTACT -->
+        <div *ngIf="form.get('contentType')?.value === 'CONTACT'">
+          <label class="block font-medium text-gray-700">Full Name</label>
+          <input formControlName="contact_name" class="w-full p-3 border rounded-lg mb-3">
+
+          <label class="block font-medium text-gray-700">Phone</label>
+          <input formControlName="contact_phone" class="w-full p-3 border rounded-lg mb-3">
+
+          <label class="block font-medium text-gray-700">Email</label>
+          <input formControlName="contact_email" class="w-full p-3 border rounded-lg mb-3">
+
+          <label class="block font-medium text-gray-700">Company</label>
+          <input formControlName="contact_company" class="w-full p-3 border rounded-lg mb-3">
+
+          <label class="block font-medium text-gray-700">Job Title</label>
+          <input formControlName="contact_title" class="w-full p-3 border rounded-lg mb-4">
+        </div>
+
+        <button
+          type="submit"
+          [disabled]="loading"
+          class="w-full py-3 mt-4 rounded-lg text-white bg-blue-600 hover:bg-blue-700 font-semibold">
+          {{ loading ? 'Generating...' : 'Generate QR' }}
+        </button>
+
+        <p *ngIf="error" class="text-red-600 mt-3">{{ error }}</p>
+      </div>
+
+      <!-- Right Side (Preview) -->
+      <div class="flex flex-col items-center justify-center bg-gray-50 rounded-xl p-6">
+        <h3 class="text-lg font-semibold mb-4">Preview</h3>
+
+        <div *ngIf="previewUrl; else emptyPreview" class="flex flex-col items-center">
+          <img [src]="previewUrl" class="w-60 h-60 border rounded shadow mb-4" alt="qr">
+
+          <button (click)="downloadPreview()"
+                  class="px-6 py-2 rounded-lg bg-green-600 text-white hover:bg-green-700">
+            Download
+          </button>
+        </div>
+
+        <ng-template #emptyPreview>
+          <p class="text-gray-400">QR will appear here after generation.</p>
+        </ng-template>
+      </div>
+
+    </form>
+  </div>
+</div>

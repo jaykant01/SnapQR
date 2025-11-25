@@ -1,0 +1,22 @@
+# Ignore backend secrets
+SnapQR-Backend/.env
+
+# Maven build files
+SnapQR-Backend/target/
+
+# Node modules
+SnapQR-Frontend/node_modules/
+
+# Angular build
+SnapQR-Frontend/dist/
+
+# IDE files
+.idea/
+.vscode/
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
