@@ -17,8 +17,7 @@
 
 ## ✨ Overview
 
-SnapQR is a production-oriented full-stack QR Code platform that demonstrates strong engineering practices: modular frontend, secure backend, persistent database, multi-stage Docker builds, and CI/CD readiness.  
-Designed for portfolio presentation, technical interviews, and real-world deployment.
+SnapQR is a full-stack QR Code platform that demonstrates strong engineering practices: modular frontend, secure backend, persistent database, multi-stage Docker builds, and CI/CD readiness.
 
 **Highlights**
 - JWT authentication + Google OAuth ready  
