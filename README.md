@@ -3,7 +3,7 @@
 <p align="center">
   QR Code Generator & Management system built with <strong>Angular 19</strong>, <strong>Spring Boot</strong> and <strong>PostgreSQL 16</strong>, fully containerized with <strong>Docker Compose</strong>.
   <br/>
-  Secure authentication, clean dashboard, and cloud-ready CI/CD & deployments.
+  Secure authentication, clean dashboard, cloud-ready CI/CD deployments for future.
 </p>
 
 <p align="center">
@@ -23,7 +23,7 @@ SnapQR is a full-stack QR Code platform that demonstrates strong engineering pra
 - JWT authentication + Google OAuth ready  
 - Generate, store, download QR codes  
 - Angular (NGINX multi-stage) + Spring Boot + PostgreSQL  
-- Docker Compose orchestration + healthchecks  
+- Docker Compose orchestration
 - Ready for GitHub Actions → AWS ECR → EC2 deployments
 
 ---
@@ -34,7 +34,7 @@ SnapQR is a full-stack QR Code platform that demonstrates strong engineering pra
 - **QR Management** — Generate, save, download, and list user QR codes  
 - **Responsive UI** — Angular + TailwindCSS with SPA routing  
 - **Persistence** — PostgreSQL with Docker volume for data durability  
-- **DevOps** — Docker Compose, image health checks, CI/CD-ready structure
+- **DevOps** — Docker Compose, AWS Cloud & CI/CD-ready structure
 
 ---
 
@@ -45,7 +45,7 @@ SnapQR is a full-stack QR Code platform that demonstrates strong engineering pra
 | Frontend  | Angular 19, TailwindCSS, TypeScript, NGINX |
 | Backend   | Spring Boot, Spring Security, JPA/Hibernate, Java (JDK 21) |
 | Database  | PostgreSQL 16 |
-| DevOps    | Docker, Docker Compose, GitHub Actions, AWS (ECR/EC2) |
+| DevOps    | Docker, Docker Compose |
 
 ---
 
